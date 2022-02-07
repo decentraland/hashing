@@ -22,7 +22,7 @@ export type EntityContentItemReference = {
     hash: string;
 };
 
-// @public
+// @public @deprecated
 export function hashV0(stream: AsyncGenerator<Uint8Array> | AsyncIterable<Uint8Array> | Uint8Array): Promise<string>;
 
 // @public
