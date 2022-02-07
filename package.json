@@ -22,12 +22,16 @@
   "homepage": "https://github.com/well-known-components/base-component#readme",
   "devDependencies": {
     "@microsoft/api-extractor": "^7.17.0",
-    "typescript": "^4.3.5",
     "@types/jest": "^27.0.1",
     "jest": "^27.0.6",
-    "ts-jest": "^27.0.5"
+    "ts-jest": "^27.0.5",
+    "typescript": "^4.3.5"
   },
-  "dependencies": {},
+  "dependencies": {
+    "cids": "^1.1.9",
+    "ipfs-unixfs-importer": "^7.0.3",
+    "multihashes": "^4.0.3"
+  },
   "files": [
     "dist"
   ]
