@@ -1,9 +1,8 @@
 /// <reference types="node" />
 
 import * as crypto from "crypto"
-import * as multihashes from "multihashes"
+import * as miltiformats from "multiformats"
 import { importer } from "ipfs-unixfs-importer"
-import CID from "cids"
 
 /**
  * Calculates a Qm prefixed hash for Decentraland (NOT CIDv0) from a readable stream
@@ -14,8 +13,9 @@ export async function hashStreamV0(stream: AsyncGenerator<Uint8Array>) {
   for await (const chunk of stream) {
     hash.update(chunk)
   }
-  let lastDigest = multihashes.encode(hash.digest(), "sha2-256")
-  return new CID(0, "dag-pb", lastDigest).toBaseEncodedString()
+
+  const digest = miltiformats.digest.create(0x12, hash.digest())
+  return miltiformats.CID.createV0(digest).toString()
 }
 
 /**
