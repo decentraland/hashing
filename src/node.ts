@@ -9,6 +9,7 @@ import { importer } from "ipfs-unixfs-importer"
  * Calculates a Qm prefixed hash for Decentraland (NOT CIDv0) from a readable stream
  *
  * @public
+ * @deprecated use hashV1 instead, this function exists for backwards compatibility reasons.
  */
 export async function hashV0(stream: AsyncGenerator<Uint8Array> | AsyncIterable<Uint8Array> | Uint8Array) {
   const hash = crypto.createHash("sha256")
