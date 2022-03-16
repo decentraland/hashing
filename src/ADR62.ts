@@ -6,7 +6,7 @@ import { toHex } from "ethereum-cryptography/utils"
  * @public
  */
 export function keccak256Hash(metadata: any, keys: string[]): string {
-  const partialMetadata = JSON.stringify(pick(metadata, keys.sort()))
+  const partialMetadata = JSON.stringify(pick(metadata, keys))
   const data = new TextEncoder().encode(partialMetadata)
   const hash = keccak256(data)
   return toHex(hash)

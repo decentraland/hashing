@@ -78,7 +78,7 @@ describe('ADR62', () => {
 
     it('hashes metadata with merkle proof correctly', () => {
         const hash = keccak256Hash(metadataWithMerkleProof, metadataWithMerkleProof.merkleProof.hashingKeys)
-        expect(hash).toBe('9c3353049b2aa3236bf4977a36421a09ffec4e0c0982379561b08853da25fa37')
+        expect(hash).toBe('8282d378bafea28952d4bcce9b2bc1567ed2dda20eba629c8030752dd8169c43')
 
         const emptyMetadata = {}
         const noKeys = []
@@ -112,7 +112,7 @@ describe('ADR62', () => {
         expect(hashA).not.toBe(hashB)
     })
 
-    it('hashing metadata with keys in different order should result in same hash', () => {
+    it('hashing metadata with keys in different order should result in different hashes', () => {
         const metadata = {
             fieldA: 'fieldA',
             fieldB: 'fieldB'
@@ -121,13 +121,14 @@ describe('ADR62', () => {
         const hashA = keccak256Hash(metadata, ['fieldA', 'fieldB'])
         const hashB = keccak256Hash(metadata, ['fieldB', 'fieldA'])
 
-        expect(hashA).toBe(hashB)
+        expect(hashA).not.toBe(hashB)
     })
 
-    it('hashing metadata with keys in different order should result in same hash 2', () => {
-        const hashA = keccak256Hash(metadataWithMerkleProof, metadataWithMerkleProof.merkleProof.hashingKeys)
-        const hashB = keccak256Hash(metadataWithMerkleProof, metadataWithMerkleProof.merkleProof.hashingKeys.sort(() => Math.random() - 0.5))
+    it('hashing metadata with keys in different order should result in different hashes 2', () => {
+        const keys = metadataWithMerkleProof.merkleProof.hashingKeys
+        const hashA = keccak256Hash(metadataWithMerkleProof, keys)
+        const hashB = keccak256Hash(metadataWithMerkleProof, keys.reverse())
 
-        expect(hashA).toBe(hashB)
+        expect(hashA).not.toBe(hashB)
     })
 })
