@@ -113,18 +113,6 @@ describe('ADR62', () => {
     })
 
     it('hashing metadata with keys in different order should result in different hashes', () => {
-        const metadata = {
-            fieldA: 'fieldA',
-            fieldB: 'fieldB'
-        }
-
-        const hashA = keccak256Hash(metadata, ['fieldA', 'fieldB'])
-        const hashB = keccak256Hash(metadata, ['fieldB', 'fieldA'])
-
-        expect(hashA).not.toBe(hashB)
-    })
-
-    it('hashing metadata with keys in different order should result in different hashes 2', () => {
         const keys = metadataWithMerkleProof.merkleProof.hashingKeys
         const hashA = keccak256Hash(metadataWithMerkleProof, keys)
         const hashB = keccak256Hash(metadataWithMerkleProof, keys.reverse())
