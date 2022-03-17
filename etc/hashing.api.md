@@ -28,6 +28,9 @@ export function hashV0(stream: AsyncGenerator<Uint8Array> | AsyncIterable<Uint8A
 // @public
 export function hashV1(content: AsyncGenerator<Uint8Array> | AsyncIterable<Uint8Array> | Uint8Array): Promise<string>;
 
+// @public
+export function keccak256Hash(metadata: any, keys: string[]): string;
+
 // (No @packageDocumentation comment for this package)
 
 ```
