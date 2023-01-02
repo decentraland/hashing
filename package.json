@@ -30,7 +30,7 @@
   "dependencies": {
     "ethereum-cryptography": "^1.0.3",
     "ipfs-unixfs-importer": "^7.0.3",
-    "multiformats": "^9.6.3"
+    "multiformats": "^11.0.0"
   },
   "files": [
     "dist"
