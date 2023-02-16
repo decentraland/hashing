@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "ethereum-cryptography": "^1.0.3",
-    "ipfs-unixfs-importer": "^7.0.3",
+    "ipfs-unixfs-importer": "^14.0.0",
     "multiformats": "^9.6.3"
   },
   "files": [
