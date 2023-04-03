@@ -3,4 +3,3 @@ node_modules
 temp
 tsdoc-metadata.json
 coverage
-dist-decl
