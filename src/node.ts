@@ -1,6 +1,4 @@
-/// <reference types="node" />
-
-import * as crypto from "crypto"
+import { sha256 } from "@noble/hashes/sha256"
 import * as multiformats from "multiformats"
 import { importer } from "ipfs-unixfs-importer"
 
@@ -12,7 +10,7 @@ import { importer } from "ipfs-unixfs-importer"
  * @deprecated use hashV1 instead, this function exists for backwards compatibility reasons.
  */
 export async function hashV0(stream: AsyncGenerator<Uint8Array> | AsyncIterable<Uint8Array> | Uint8Array) {
-  const hash = crypto.createHash("sha256")
+  const hash = sha256.create()
 
   if (stream instanceof Uint8Array) {
     hash.update(stream)
