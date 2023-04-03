@@ -1,6 +1,6 @@
 {
   "name": "@dcl/hashing",
-  "version": "2.0.0",
+  "version": "1.0.0",
   "description": "base component",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -23,16 +23,14 @@
   "devDependencies": {
     "@microsoft/api-extractor": "^7.17.0",
     "@types/jest": "^27.0.1",
-    "esbuild": "^0.17.15",
-    "fp-future": "^1.0.1",
-    "ipfs-unixfs-importer": "^7.0.3",
     "jest": "^27.5.0",
-    "multiformats": "^9.6.3",
     "ts-jest": "^27.0.5",
     "typescript": "^4.3.5"
   },
   "dependencies": {
-    "ethereum-cryptography": "^1.0.3"
+    "ethereum-cryptography": "^1.0.3",
+    "ipfs-unixfs-importer": "^7.0.3",
+    "multiformats": "^9.6.3"
   },
   "files": [
     "dist"
