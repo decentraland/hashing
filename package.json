@@ -21,10 +21,7 @@
   },
   "homepage": "https://github.com/decentraland/hashing#readme",
   "devDependencies": {
-    "@microsoft/api-extractor": "^7.17.0",
-    "@types/jest": "^27.0.1",
-    "jest": "^27.5.0",
-    "ts-jest": "^27.0.5",
+    "@well-known-components/test-helpers": "^1.5.2",
     "typescript": "^4.3.5"
   },
   "dependencies": {
