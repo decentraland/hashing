@@ -25,9 +25,9 @@
     "typescript": "^4.3.5"
   },
   "dependencies": {
+    "@ipld/dag-pb": "^4.0.4",
     "ethereum-cryptography": "^2.0.0",
-    "ipfs-unixfs-importer": "^7.0.3",
-    "multiformats": "^9.6.3"
+    "multiformats": "^12.0.1"
   },
   "files": [
     "dist"

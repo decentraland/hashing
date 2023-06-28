@@ -2,8 +2,8 @@
 
 import * as crypto from "crypto"
 import * as multiformats from "multiformats"
-import { importer } from "ipfs-unixfs-importer"
-
+import { sha256 } from "multiformats/hashes/sha2"
+import * as dagPb from "@ipld/dag-pb"
 
 /**
  * Calculates a Qm prefixed hash for Decentraland (NOT CIDv0) from a readable stream
@@ -34,31 +34,17 @@ export async function hashV0(stream: AsyncGenerator<Uint8Array> | AsyncIterable<
  * @public
  */
 export async function hashV1(content: AsyncGenerator<Uint8Array> | AsyncIterable<Uint8Array> | Uint8Array) {
-  const block = {
-    get: (cid: any) => Promise.reject(new Error(`unexpected block API get for ${cid}`)),
-    put: () => Promise.reject(new Error("unexpected block API put")),
-  } as any
+  const cidVersion = 1
 
   let lastCid
-
-  async function* wrap() {
-    yield content as Uint8Array
-  }
-
   if (content instanceof Uint8Array) {
-    for await (const { cid } of importer([{ content: wrap() }], block, {
-      cidVersion: 1,
-      onlyHash: true,
-      rawLeaves: true,
-    })) {
-      lastCid = cid
-    }
+    const multihash = await sha256.digest(content)
+    lastCid = multiformats.CID.create(cidVersion, dagPb.code, multihash)
   } else if (Symbol.asyncIterator in content) {
-    for await (const { cid } of importer([{ content }], block, {
-      cidVersion: 1,
-      onlyHash: true,
-      rawLeaves: true,
-    })) {
+    for await (const aContent of content) {
+      const multihash = await sha256.digest(aContent)
+      const cid = multiformats.CID.create(cidVersion, dagPb.code, multihash)
+
       lastCid = cid
     }
   } else {
