@@ -4,7 +4,10 @@
   "description": "base component",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
-  "scripts": {},
+  "type": "module",
+  "scripts": {
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest --detectOpenHandles --colors --runInBand --coverage"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/decentraland/hashing.git"
@@ -17,7 +20,10 @@
   },
   "prettier": {
     "printWidth": 120,
-    "semi": false
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "none",
+    "tabWidth": 2
   },
   "homepage": "https://github.com/decentraland/hashing#readme",
   "devDependencies": {

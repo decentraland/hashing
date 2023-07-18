@@ -1,4 +1,4 @@
-import { hashV1, hashV0 } from "./node"
+import { hashV1, hashV0 } from "./node.js"
 
 /**
  * EntityContent as specified in ADR32

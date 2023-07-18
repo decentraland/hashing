@@ -1,7 +1,8 @@
 /// <reference types="node" />
 
-import * as crypto from "crypto"
-import * as multiformats from "multiformats"
+import crypto from "crypto"
+import * as digest from "multiformats/hashes/digest"
+import { CID } from "multiformats/cid"
 import { sha256 } from "multiformats/hashes/sha2"
 import * as dagPb from "@ipld/dag-pb"
 
@@ -26,7 +27,7 @@ export async function hashV0(stream: AsyncGenerator<Uint8Array> | AsyncIterable<
     )
   }
 
-  return multiformats.CID.createV0(multiformats.digest.create(0x12, hash.digest())).toString()
+  return CID.createV0(digest.create(0x12, hash.digest())).toString()
 }
 
 /**
@@ -39,11 +40,11 @@ export async function hashV1(content: AsyncGenerator<Uint8Array> | AsyncIterable
   let lastCid
   if (content instanceof Uint8Array) {
     const multihash = await sha256.digest(content)
-    lastCid = multiformats.CID.create(cidVersion, dagPb.code, multihash)
+    lastCid = CID.create(cidVersion, dagPb.code, multihash)
   } else if (Symbol.asyncIterator in content) {
     for await (const aContent of content) {
       const multihash = await sha256.digest(aContent)
-      const cid = multiformats.CID.create(cidVersion, dagPb.code, multihash)
+      const cid = CID.create(cidVersion, dagPb.code, multihash)
 
       lastCid = cid
     }
