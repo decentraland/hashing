@@ -13,16 +13,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - name: Use Node.js 16.x
-        uses: actions/setup-node@v1
+      - name: Use Node.js 18.x
+        uses: actions/setup-node@v3
         with:
-          node-version: 16.x
+          node-version: 18.x
       - name: install
-        run:  npm install
+        run:  yarn install
       - name: build
-        run:  make build
+        run:  yarn build
       - name: test
-        run:  make test
+        run:  yarn test
       - name: Publish
         uses: menduz/oddish-action@master
         with:
