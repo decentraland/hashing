@@ -6,9 +6,11 @@
   "typings": "dist/index.d.ts",
   "type": "module",
   "scripts": {
-    "build": "./node_modules/.bin/tsc -p tsconfig.json",
+    "build": "tsc -p tsconfig.json",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "lint:check": "eslint '**/*.{js,ts}'",
+    "lint:fix": "eslint '**/*.{js,ts}' --fix"
   },
   "repository": {
     "type": "git",
@@ -29,6 +31,7 @@
   },
   "homepage": "https://github.com/decentraland/hashing#readme",
   "devDependencies": {
+    "@dcl/eslint-config": "^1.1.8",
     "typescript": "^4.3.5",
     "vitest": "^0.33.0"
   },
