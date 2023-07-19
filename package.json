@@ -6,7 +6,7 @@
   "typings": "dist/index.d.ts",
   "type": "module",
   "scripts": {
-    "build": "tsc -p tsconfig.json",
+    "build": "tsc -p tsconfig.json && esbuild src/index.ts --bundle --platform=node --outdir=esbuild-dist",
     "test": "vitest run",
     "test:watch": "vitest",
     "lint:check": "eslint '**/*.{js,ts}'",

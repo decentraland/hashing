@@ -1,4 +1,5 @@
 dist
+esbuild-dist
 node_modules
 temp
 tsdoc-metadata.json
