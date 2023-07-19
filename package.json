@@ -42,6 +42,7 @@
     "multiformats": "^12.0.1"
   },
   "files": [
-    "dist"
+    "dist",
+    "esbuild-dist"
   ]
 }
