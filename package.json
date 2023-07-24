@@ -2,11 +2,11 @@
   "name": "@dcl/hashing",
   "version": "1.0.0",
   "description": "base component",
-  "main": "dist/index.js",
+  "main": "dist/index.cjs",
   "typings": "dist/index.d.ts",
   "type": "module",
   "scripts": {
-    "build": "esbuild src/index.ts --bundle --platform=node --outdir=dist",
+    "build": "esbuild src/index.ts --bundle --platform=node --outdir=dist --out-extension:.js=.cjs",
     "test": "vitest run",
     "test:watch": "vitest",
     "lint:check": "eslint '**/*.{js,ts}'",
