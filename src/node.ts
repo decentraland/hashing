@@ -1,9 +1,10 @@
 /// <reference types="node" />
 
-import * as crypto from "crypto"
-import * as multiformats from "multiformats"
-import { importer } from "ipfs-unixfs-importer"
-
+import crypto from 'crypto'
+import { create } from 'multiformats/hashes/digest'
+import { CID } from 'multiformats/cid'
+import { importer } from 'ipfs-unixfs-importer'
+import { MemoryBlockstore } from 'blockstore-core'
 
 /**
  * Calculates a Qm prefixed hash for Decentraland (NOT CIDv0) from a readable stream
@@ -12,7 +13,7 @@ import { importer } from "ipfs-unixfs-importer"
  * @deprecated use hashV1 instead, this function exists for backwards compatibility reasons.
  */
 export async function hashV0(stream: AsyncGenerator<Uint8Array> | AsyncIterable<Uint8Array> | Uint8Array) {
-  const hash = crypto.createHash("sha256")
+  const hash = crypto.createHash('sha256')
 
   if (stream instanceof Uint8Array) {
     hash.update(stream)
@@ -22,11 +23,11 @@ export async function hashV0(stream: AsyncGenerator<Uint8Array> | AsyncIterable<
     }
   } else {
     throw new Error(
-      "Invalid value provided to hashStreamV0. Expected AsyncGenerator<Uint8Array> | AsyncIterable<Uint8Array> | Uint8Array"
+      'Invalid value provided to hashStreamV0. Expected AsyncGenerator<Uint8Array> | AsyncIterable<Uint8Array> | Uint8Array'
     )
   }
 
-  return multiformats.CID.createV0(multiformats.digest.create(0x12, hash.digest())).toString()
+  return CID.createV0(create(0x12, hash.digest())).toString()
 }
 
 /**
@@ -34,10 +35,7 @@ export async function hashV0(stream: AsyncGenerator<Uint8Array> | AsyncIterable<
  * @public
  */
 export async function hashV1(content: AsyncGenerator<Uint8Array> | AsyncIterable<Uint8Array> | Uint8Array) {
-  const block = {
-    get: (cid: any) => Promise.reject(new Error(`unexpected block API get for ${cid}`)),
-    put: () => Promise.reject(new Error("unexpected block API put")),
-  } as any
+  const blockstore = new MemoryBlockstore()
 
   let lastCid
 
@@ -46,24 +44,22 @@ export async function hashV1(content: AsyncGenerator<Uint8Array> | AsyncIterable
   }
 
   if (content instanceof Uint8Array) {
-    for await (const { cid } of importer([{ content: wrap() }], block, {
+    for await (const { cid } of importer([{ content: wrap() }], blockstore, {
       cidVersion: 1,
-      onlyHash: true,
-      rawLeaves: true,
+      rawLeaves: true
     })) {
       lastCid = cid
     }
   } else if (Symbol.asyncIterator in content) {
-    for await (const { cid } of importer([{ content }], block, {
+    for await (const { cid } of importer([{ content }], blockstore, {
       cidVersion: 1,
-      onlyHash: true,
-      rawLeaves: true,
+      rawLeaves: true
     })) {
       lastCid = cid
     }
   } else {
     throw new Error(
-      "Invalid value provided to hashStreamV1. Expected AsyncGenerator<Uint8Array> | AsyncIterable<Uint8Array> | Uint8Array"
+      'Invalid value provided to hashStreamV1. Expected AsyncGenerator<Uint8Array> | AsyncIterable<Uint8Array> | Uint8Array'
     )
   }
 

@@ -1,4 +1,4 @@
-import { hashV1, hashV0 } from "./node"
+import { hashV1, hashV0 } from './node.js'
 
 /**
  * EntityContent as specified in ADR32
@@ -18,7 +18,7 @@ export function sortKeys(a: EntityContentItemReference, b: EntityContentItemRefe
 // Compare strings
 // @internal
 export function compareStrings(a: string, b: string): number {
-  if (a == b) return 0
+  if (a === b) return 0
 
   for (let i = 0; i < Math.max(a.length, b.length); i++) {
     if (a.charAt(i) > b.charAt(i)) return 1
@@ -35,7 +35,7 @@ export function prepareADR32Data(contents: EntityContentItemReference[], metadat
   return new TextEncoder().encode(
     JSON.stringify({
       content: contents.sort(sortKeys).map((entry) => ({ key: entry.file, hash: entry.hash })),
-      metadata,
+      metadata
     })
   )
 }
@@ -52,7 +52,7 @@ export async function calculateMultipleHashesADR32(contents: EntityContentItemRe
 
   return {
     data,
-    hash: await hashV1(data),
+    hash: await hashV1(data)
   }
 }
 
@@ -68,6 +68,6 @@ export async function calculateMultipleHashesADR32LegacyQmHash(contents: EntityC
 
   return {
     data,
-    hash: await hashV0(data),
+    hash: await hashV0(data)
   }
 }

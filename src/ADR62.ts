@@ -1,5 +1,5 @@
-import { keccak256 } from "ethereum-cryptography/keccak"
-import { toHex } from "ethereum-cryptography/utils"
+import { keccak256 } from 'ethereum-cryptography/keccak.js'
+import { toHex } from 'ethereum-cryptography/utils.js'
 
 /**
  * Calculates the metadata hash. Uses the keys to determine which fields of the metadata object will be used for the result.

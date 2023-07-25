@@ -2,7 +2,7 @@ import {
   EntityContentItemReference,
   calculateMultipleHashesADR32,
   calculateMultipleHashesADR32LegacyQmHash,
-} from "../src/ADR32"
+} from "../src/ADR32.js"
 
 describe("ADR32", () => {
   it("v1 hashes multiple files correctly 1", async () => {
