@@ -32,16 +32,15 @@
   "homepage": "https://github.com/decentraland/hashing#readme",
   "devDependencies": {
     "@dcl/eslint-config": "^1.1.8",
+    "blockstore-core": "^4.2.0",
     "esbuild": "^0.18.16",
+    "ethereum-cryptography": "^2.1.2",
+    "ipfs-unixfs-importer": "^15.1.7",
+    "multiformats": "^12.0.1",
     "typescript": "^5.1.6",
     "vitest": "^0.33.0"
   },
-  "dependencies": {
-    "blockstore-core": "^4.2.0",
-    "ethereum-cryptography": "^2.0.0",
-    "ipfs-unixfs-importer": "^15.1.7",
-    "multiformats": "^12.0.1"
-  },
+  "dependencies": {},
   "files": [
     "dist"
   ]
