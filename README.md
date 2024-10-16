@@ -1,5 +1,7 @@
 # @dcl/hashing
 
+[![Coverage Status](https://coveralls.io/repos/github/decentraland/hashing/badge.svg?branch=main)](https://coveralls.io/github/decentraland/hashing?branch=main)
+
 Hashing functions to calculate Decentraland Content Identifiers
 
 - `hashV1(arg): Promise<string>`: `ba` prefixed hashes _are_ IPFSv1 hashes. Calculating hashes for files should generate the same result as an IPFS node.
