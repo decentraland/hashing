@@ -7,7 +7,7 @@
   "type": "module",
   "scripts": {
     "build": "esbuild src/index.ts --bundle --platform=neutral --outdir=dist --out-extension:.js=.js --external:crypto --format=cjs && tsc --emitDeclarationOnly --outDir dist",
-    "test": "vitest run --coverage",
+    "test": "vitest run",
     "test:watch": "vitest",
     "lint:check": "eslint '**/*.{js,ts}'",
     "lint:fix": "eslint '**/*.{js,ts}' --fix",
