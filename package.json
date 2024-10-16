@@ -7,7 +7,7 @@
   "type": "module",
   "scripts": {
     "build": "esbuild src/index.ts --bundle --platform=neutral --outdir=dist --out-extension:.js=.js --external:crypto --format=cjs && tsc --emitDeclarationOnly --outDir dist",
-    "test": "vitest run",
+    "test": "vitest run --coverage",
     "test:watch": "vitest",
     "lint:check": "eslint '**/*.{js,ts}'",
     "lint:fix": "eslint '**/*.{js,ts}' --fix",
@@ -33,6 +33,7 @@
   "homepage": "https://github.com/decentraland/hashing#readme",
   "devDependencies": {
     "@dcl/eslint-config": "^1.1.8",
+    "@vitest/coverage-c8": "^0.33.0",
     "blockstore-core": "^4.2.0",
     "esbuild": "^0.18.16",
     "ethereum-cryptography": "^2.1.2",
@@ -41,7 +42,6 @@
     "typescript": "^5.1.6",
     "vitest": "^0.33.0"
   },
-  "dependencies": {},
   "files": [
     "dist"
   ]
