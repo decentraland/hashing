@@ -1,22 +1,27 @@
 # @dcl/hashing
 
-[![Coverage Status](https://coveralls.io/repos/github/decentraland/hashing/badge.svg?branch=main)](https://coveralls.io/github/decentraland/hashing?branch=main)
+> **This library has moved.** The hashing primitives previously published
+> from this repository now live in-tree at
+> [decentraland/core-cli](https://github.com/decentraland/core-cli), under
+> `src/hashing`.
 
-Hashing functions to calculate Decentraland Content Identifiers
+This repository is no longer the source of truth for ADR32/ADR62 hashing
+or for `hashV0`/`hashV1`. All new work — bug fixes, dependency upgrades,
+API changes — should be proposed against `core-cli`.
 
-- `hashV1(arg): Promise<string>`: `ba` prefixed hashes _are_ IPFSv1 hashes. Calculating hashes for files should generate the same result as an IPFS node.
-- **DEPRECATED** `hashV0(arg): Promise<string>`: `Qm` prefixed hashes _are not_ IPFSv0 hashes, although it uses the same encoding (Qm...). These
+## Why the move
 
-`npm i @dcl/hashing`
+The library was effectively consumed by a single project (`core-cli`), so
+every change required a publish + version bump + upstream upgrade round
+trip for no practical benefit. Inlining the code keeps hashing evolving
+in lockstep with its only caller and removes the release coordination
+overhead.
 
-```ts
-import { hashV1 } from '@dcl/hashing'
+## Where to go
 
-// use with Node.js Buffers or Uint8Array
-cid = await hashV1(fs.readFileSync('file'))
+- Source, tests, and issue tracking:
+  [decentraland/core-cli](https://github.com/decentraland/core-cli)
+- Hashing code path inside the repo: `src/hashing/`
 
-// use with fs.ReadStream
-cid = await hashV1(fs.createReadStream('file'))
-
-// => bafybeibdik2ihfpcdi7aaaguptwcoc5msav7uhn5hu54xlq2pdwkh5arzy
-```
+Existing published versions on npm remain available for consumers that
+need them, but will not receive further updates from this repository.
