@@ -1,5 +1,8 @@
 # @dcl/hashing
 
+This package has been migrated to the [`core-libs`](https://github.com/decentraland/core-libs/tree/main/libs/hashing) monorepo.
+Future changes, issues, and releases are managed there.
+
 [![Coverage Status](https://coveralls.io/repos/github/decentraland/hashing/badge.svg?branch=main)](https://coveralls.io/github/decentraland/hashing?branch=main)
 
 Hashing functions to calculate Decentraland Content Identifiers
